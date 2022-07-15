@@ -10,8 +10,8 @@ let room;
 setup = function () {
   //TODO: use typescript!
   //TODO: use a constants file
-  const roomWidth = 400;
-  const roomHeight = 400;
+  const roomWidth = 600;
+  const roomHeight = 250;
   const roomX = window.innerWidth / 2 - roomWidth / 2;
   const roomY = window.innerHeight / 2;
 
@@ -32,7 +32,7 @@ setup = function () {
     mirror = new Mirror(roomX, roomY, roomX + roomWidth, roomY);
     diamond = new Diamond(diamondX, diamondY, diamondRadius);
     mirrorDiamond = new Diamond(mirrorDiamondX, mirrorDiamondY, diamondRadius);
-    viewer = new Viewer(viewerX, viewerY);
+    viewer = new Viewer(viewerX, viewerY, roomX, roomY, roomWidth, roomHeight);
     console.log(mirrorDiamondY, mirrorDiamondX, roomY);
     ray = new Ray(viewer, mirrorDiamondX, mirrorDiamondY, roomY);
   };

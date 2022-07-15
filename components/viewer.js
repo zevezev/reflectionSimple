@@ -2,7 +2,7 @@
 // referenced from Daniel Shiffman <http://www.shiffman.net>
 
 class Viewer {
-  constructor(x, y) {
+  constructor(x, y, roomX, roomY, roomWidth, roomHeight) {
     this.dragging = false; // Is the object being dragged?
     this.rollover = false; // Is the mouse over the ellipse?
     this.x = x;
@@ -11,6 +11,10 @@ class Viewer {
     this.h = 40;
     this.offsetX = 0;
     this.offsetY = 0;
+    this.roomWidth = roomWidth;
+    this.roomHeight = roomHeight;
+    this.roomX = roomX;
+    this.roomY = roomY;
   }
 
   over() {
@@ -30,8 +34,14 @@ class Viewer {
   update() {
     // Adjust location if being dragged
     if (this.dragging) {
-      this.x = mouseX + this.offsetX;
-      this.y = mouseY + this.offsetY;
+      this.x = Math.min(
+        this.roomX + this.roomWidth - this.w,
+        Math.max(this.roomX, mouseX + this.offsetX)
+      );
+      this.y = Math.min(
+        this.roomY + this.roomHeight - this.h,
+        Math.max(this.roomY, mouseY + this.offsetY)
+      );
     }
   }
 
